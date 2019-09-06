@@ -20,6 +20,9 @@ class App extends Component {
         <h1>Grammarist</h1>
         <p>Type a sentence below</p>
         <GrammarForm grammarFunction={this.checkMyGrammar} myName='Jess' />
+        <div>
+          <p></p>
+        </div>
       </div>
     );
   }
