@@ -1,25 +1,22 @@
 import React from 'react';
 
 export default class Button extends React.Component{
-  
-// idkwtftocallthis = (e) => {
-//     e.preventDefault();
-//     console.log('button was clicked');
-//   }
 
 
-  
-  //write variable containing function to make axios calls and function to print to page
-  // constructor(){
-  //   super();
+  clearThePage = () => {
+   
 
-  // }
+  }
+
   
- 
+  handleClear = (event) =>{
+    event.preventDefault();
+    this.clearThePage();
+  }
 
   render (){
     return (
-      <button onClick={this.checkMyGrammar} type="submit">Check my grammar!</button>
+      <button onClick={this.clearThePage} type="submit">Hide my shame</button>
       );
   }
 

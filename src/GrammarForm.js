@@ -3,9 +3,7 @@ import axios from 'axios';
 import Qs from 'qs';
 
 export default class GrammarForm extends React.Component {
-
-
-
+    
     constructor(){
         super();
     
@@ -21,26 +19,30 @@ export default class GrammarForm extends React.Component {
         axios ({
           method: 'GET',
           url: 'http://proxy.hackeryou.com',
-          dataResponse: 'JSONP',
+          dataResponse: 'JSON',
+          paramsSerializer: function(params) {
+            return Qs.stringify(params, {arrayFormat: 'brackets'})
+          },
           params: {
-            reqUrl: 'http://api.grammarbot.io/',
-            paramsSerializer: function(params) {
-              return Qs.stringify(params, {arrayFormat: 'brackets'})
-            },
-            xmlToJSON: false,
+            reqUrl: 'http://api.grammarbot.io/v2/check',
+            params: {
+                queryParam: this.state.userInput,
+                key: 'KS9C5N3Y',
+                format: 'JSON',
+                text: this.state.userInput,
+                language: 'en-CA',
+            }, 
             proxyHeaders: {
               'header_params': 'value',
-              key: 'KS9C5N3Y',
-              format: 'JSON',
-              text: this.state.userInput,
-              language: 'en-CA'
-            }
+            },
+            xmlToJSON: false,
           }
         }).then((results) => {
-        //   this.setState({
-        //     edits: [results.sentence]
-        //   })
-        console.log(results);
+          console.log(results);
+          //take the results and pull out the results. Store that in a variable called edits
+          const edits = [];
+          //replace this console log with a way to print this to the page. Does it need to be here or at the handleSubmit stage??
+          console.log(edits);
         })
       }
 
@@ -66,6 +68,7 @@ export default class GrammarForm extends React.Component {
                     value={this.state.userInput}
                 />
                 <button onClick={this.handleSubmit} type="submit">Check my grammar!</button>
+                <button>Hide my shame</button>
             </form>
         )
     }
