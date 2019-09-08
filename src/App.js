@@ -12,6 +12,7 @@ class App extends Component {
 
     this.state = {
       userInput: '',
+      //this will have the "shortMessage and message"
       edits: [],
     }
   }
@@ -40,17 +41,23 @@ class App extends Component {
         xmlToJSON: false,
       }
     }).then((results) => {
-      console.log(results);
-      this.setState({
-        edits: results.data.matches,
+      // console.log(results);
+      //Each grammatical error returns an object in array of matches. Two of the keys on each object (message and shortMessage) are to be printed to the page.
+        // const objects = [...results.data.matches]
+        // const messages = [].push(objects.keys(objects));
+        // console.log(messages);
+      console.log(results.data.matches);
 
-        //map over this array of edits (has to go deeper)
-        //right now it's an array of objects, but you want the string
-      });
+      this.setState({
+        edits: results.data.matches
+        // edits: ([]).push((results.data.matches))
+        // .map((results.data.matches).keys())        
+        // ),
+      })
+      console.log(this.state);
     })
   }
 
-  
 
   handleChange = (event) => {
     this.setState({
@@ -62,16 +69,26 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.checkMyGrammar();
+    console.log(this.state);
   }
 
   render(){
     return (
       <div className="App">
         <h1>Grammarist</h1>
+        <h2>Let me tell you what your problem is!</h2>
         <p>Type a sentence below</p>
         <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} myName='Jess'/>
         <div>
           <p>{this.state.userInput}</p>
+          <ul>{this.state.edits.map((errorMessages, index) =>{
+            return(
+              <li key={index}>
+                <p>{errorMessages.shortMessage}</p>
+                <p>{errorMessages.message}</p>
+              </li>
+            ) 
+          })}</ul>
         </div>
       </div>
     );
