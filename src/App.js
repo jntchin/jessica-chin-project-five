@@ -79,16 +79,25 @@ class App extends Component {
         <h2>Let me tell you what <span>you're</span> your problem is!</h2>
         <p>Type a sentence below</p>
         <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} />
-        <div>
+
+
+{/* 
+{this.state.edits.map((errorMessages) => (errorMessages.shortMessage = "")) ? null : <span className="shortMessageSpan">You've got a</span>}
+ */}
+{/* 
+{(errorMessages.shortMessage = "") ? null : <span className="shortMessageSpan">You've got a</span>}{errorMessages.shortMessage} */}
+
+        <div className="errors">
           <p>{this.state.userInput}</p>
           <ul>{this.state.edits.map((errorMessages, index) =>{
             return(
               <li key={index}>
-                <p>{errorMessages.shortMessage}</p>
-                <p>{errorMessages.message}</p>
+                <p className="shortMessage"></p>
+                <p className="message">{errorMessages.message}</p>
               </li>
-            ) 
-          })}</ul>
+              ) 
+            })}
+          </ul>
         </div>
         <ResetButton handleReset={this.handleReset} />
       </div>

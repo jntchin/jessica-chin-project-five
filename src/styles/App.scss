@@ -62,10 +62,25 @@ h2{
 }
 
 
-/* BODY STYLES */
-
 /* FORM STYLES */
 
 form{
   font-family: ($baseFont);
+}
+
+
+/* BODY STYLES */
+
+ul{
+  list-style: none;
+    li{
+      font-family: ($baseFont);
+        p.shortMessage{
+          font-style: italic;
+        }
+    }
+}
+
+.shortMessageSpan{
+  text-transform: lowercase;
 }
