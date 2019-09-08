@@ -1,3 +1,7 @@
+@import 'setup';
+@import 'variables';
+
+
 .App {
   text-align: center;
 }
@@ -30,4 +34,38 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/*GENERAL STYLES*/
+
+html{
+  font-size: 125%;
+}
+
+body{
+  background: lightgrey;
+}
+
+/*HEADER STYLES*/
+
+h1{
+  font-family: ($headerFont);
+  font-weight: 700;
+  color: green;
+}
+
+h2{
+  font-family: ($headerFont);
+    span{
+      text-decoration-line: line-through;
+    }
+}
+
+
+/* BODY STYLES */
+
+/* FORM STYLES */
+
+form{
+  font-family: ($baseFont);
 }

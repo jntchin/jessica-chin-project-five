@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import './App.css';
+import './styles/App.scss';
 import axios from 'axios';
 import Qs from 'qs';
 import GrammarForm from './GrammarForm';
+import ResetButton from './ResetButton';
 // import firebase from './firebase';
 
 
@@ -12,10 +13,10 @@ class App extends Component {
 
     this.state = {
       userInput: '',
-      //this will have the "shortMessage and message"
       edits: [],
     }
   }
+
 
   checkMyGrammar = () => {
     console.log(this.state)
@@ -41,23 +42,11 @@ class App extends Component {
         xmlToJSON: false,
       }
     }).then((results) => {
-      // console.log(results);
-      //Each grammatical error returns an object in array of matches. Two of the keys on each object (message and shortMessage) are to be printed to the page.
-        // const objects = [...results.data.matches]
-        // const messages = [].push(objects.keys(objects));
-        // console.log(messages);
-      console.log(results.data.matches);
-
       this.setState({
         edits: results.data.matches
-        // edits: ([]).push((results.data.matches))
-        // .map((results.data.matches).keys())        
-        // ),
       })
-      console.log(this.state);
     })
   }
-
 
   handleChange = (event) => {
     this.setState({
@@ -69,16 +58,27 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.checkMyGrammar();
-    console.log(this.state);
+  }
+
+  reset(){
+    this.setState({
+      userInput: '',
+      edits: [],
+    })
+  }
+  
+  handleReset = (event) => {
+    event.preventDefault();
+    this.reset();
   }
 
   render(){
     return (
       <div className="App">
         <h1>Grammarist</h1>
-        <h2>Let me tell you what your problem is!</h2>
+        <h2>Let me tell you what <span>you're</span> your problem is!</h2>
         <p>Type a sentence below</p>
-        <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} myName='Jess'/>
+        <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} />
         <div>
           <p>{this.state.userInput}</p>
           <ul>{this.state.edits.map((errorMessages, index) =>{
@@ -90,6 +90,7 @@ class App extends Component {
             ) 
           })}</ul>
         </div>
+        <ResetButton handleReset={this.handleReset} />
       </div>
     );
   }
