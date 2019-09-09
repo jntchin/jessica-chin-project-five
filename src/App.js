@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       userInput: '',
       edits: [],
+      chars_left: 50000,
     }
   }
 
@@ -49,8 +50,11 @@ class App extends Component {
   }
 
   handleChange = (event) => {
+    const charCount = event.target.value.length;
+    const charLeft = 50000 - charCount;
     this.setState({
       userInput: event.target.value,
+      chars_left: charLeft
     }) 
   }
 
@@ -76,8 +80,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Grammarist</h1>
-        <h2>Let me tell you what <span>you're</span> your problem is!</h2>
-        <p>Type a sentence below</p>
+        <h2>Here's what <span>you're</span> your problem is!</h2>
+        <p>Type a sentence below.</p>
         <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} />
 
 
@@ -88,7 +92,10 @@ class App extends Component {
 {(errorMessages.shortMessage = "") ? null : <span className="shortMessageSpan">You've got a</span>}{errorMessages.shortMessage} */}
 
         <div className="errors">
-          <p>{this.state.userInput}</p>
+          {this.state.userInput.length === 0 ? <p>Go ahead, type something</p> : null}
+          {/* {this.state.userInput.length.range(...1, 25) ? <p>Must be at least 25 characters</p> : null } */}
+          {/* {50000 > this.state.userInput.length > 25 ? <p>{this.state.userInput}</p> : <p>Must be less than 50,000 characters</p>} */}
+          {/* <p>{this.state.userInput}</p> */}
           <ul>{this.state.edits.map((errorMessages, index) =>{
             return(
               <li key={index}>
