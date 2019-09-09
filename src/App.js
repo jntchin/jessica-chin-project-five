@@ -4,7 +4,12 @@ import axios from 'axios';
 import Qs from 'qs';
 import GrammarForm from './GrammarForm';
 import ResetButton from './ResetButton';
-// import firebase from './firebase';
+import firebase from './firebase';
+
+
+const dbRef = firebase.database().ref();
+
+
 
 
 class App extends Component {
@@ -14,8 +19,9 @@ class App extends Component {
     this.state = {
       inputField: '',
       userInput: '',
+      savedInput: '',
       edits: [],
-      chars_left: 50000,
+      charsLeft: 50000,
     }
   }
 
@@ -58,7 +64,7 @@ class App extends Component {
     this.setState({
       inputField: event.target.value,
       userInput: event.target.value,
-      chars_left: charLeft,
+      charsLeft: charLeft,
     })
   }
 
@@ -66,10 +72,14 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.setState({
+      savedInput: this.state.inputField,
       inputField: '',
     })
-    if (this.state.chars_left <= 49975){
+    if (this.state.charsLeft <= 49975){
       this.checkMyGrammar();
+      this.setState({
+        userInput: event.target.value,
+      })
     }
     else {
       this.setState({
@@ -94,16 +104,16 @@ class App extends Component {
 
   characterCountMessage = () => {
       //if charCount is 50,000 return go ahead and write something, don't print userInput
-    if (this.state.chars_left === 50000) {
+    if (this.state.charsLeft === 50000) {
       return 'Go ahead and write something'
     //if charCount is 49,975-49,999 print must be at least 25 characters
-    } else if (this.state.chars_left <= 49999 && this.state.chars_left > 49975){
+    } else if (this.state.charsLeft <= 49999 && this.state.charsLeft > 49975){
       return 'Must be at least 25 characters'
       //if charCount is 49,974 or less, print the userInput
-    } else if (this.state.chars_left <= 49975){
-      return null
+    } else if (this.state.charsLeft <= 49975){
+      return null 
       //if charCount is 0, write limit of 50,000 characters, don't render userInput
-    } else if (this.state.chars_left === 0){
+    } else if (this.state.charsLeft === 0){
       return (`You've hit your character limit`)
     }
   }
@@ -115,12 +125,15 @@ class App extends Component {
         <h1>Grammarist</h1>
         <h2>Let me tell you what <span>you're</span> your problem is!</h2>
         <p>Type a sentence below.</p>
-        <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} inputField={this.state.inputField} chars_left={this.state.chars_left}/>
+        <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} inputField={this.state.inputField} charsLeft={this.state.charsLeft} userInput={this.state.userInput} />
         <div className="errors"> 
-          <p>{this.characterCountMessage()}</p>
+          
+          <p className="errorHandling">{this.characterCountMessage()}</p>
+          
           <ul>{this.state.edits.map((errorMessages, index) =>{
             return(
               <li key={index}>
+                <p>{this.state.savedInput}</p>
                 <p className="shortMessage">{errorMessages.shortMessage}</p>
                 <p className="message">{errorMessages.message}</p>
               </li>
@@ -137,9 +150,8 @@ class App extends Component {
 export default App;
 
 
-{/* 
-{this.state.edits.map((errorMessages) => (errorMessages.shortMessage = "")) ? null : <span className="shortMessageSpan">You've got a</span>}
- */}
+
+
 
  {/* 
 {(errorMessages.shortMessage = "") ? null : <span className="shortMessageSpan">You've got a</span>}{errorMessages.shortMessage} */}
