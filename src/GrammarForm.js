@@ -2,17 +2,29 @@ import React from 'react';
 
 
 export default class GrammarForm extends React.Component {
+
+    displayUserInput = () => {
+        if (this.props.chars_left <= 49975){
+          return this.props.userInput
+        } else {
+          return null
+        }
+      }
+    
     
     render(){
         return(
-            <form action="">
-                <textarea
-                    rows="10"
-                    onChange={this.props.handleChange}
-                    value={this.props.inputField}
-                ></textarea>
-                <button onClick={this.props.handleSubmit} type="submit">Check my grammar!</button>
-            </form>
+            <div>
+                <form action="">
+                    <textarea
+                        rows="5"
+                        onChange={this.props.handleChange}
+                        value={this.props.inputField}
+                    ></textarea>
+                    <button onClick={this.props.handleSubmit} type="submit">Check my grammar!</button>
+                </form>
+                <p>{this.displayUserInput()}</p>
+            </div>
         )
     }
 
