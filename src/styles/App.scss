@@ -38,6 +38,10 @@
 
 /*GENERAL STYLES*/
 
+// *{
+//   border: 2px solid rebeccapurple;
+// }
+
 html{
   font-size: 125%;
 }
@@ -48,49 +52,62 @@ body{
 
 /*HEADER STYLES*/
 
-h1{
-  font-family: ($headerFont);
-  font-size: 3rem;
-  font-weight: 700;
-  color: green;
+header{
+  max-width: 100%;
+  h1{
+    font-family: ($headerFont);
+    font-size: 3rem;
+    font-weight: 700;
+    color: ($headerAccent);
+  }
+  
+  h2{
+    font-family: ($headerFont);
+    color: ($text);
+      span{
+        text-decoration-line: line-through;
+        color:($headerAccent);
+      }
+  }
 }
-
-h2{
-  font-family: ($headerFont);
-    span{
-      text-decoration-line: line-through;
-      color: green;
-    }
-}
-
 
 /* FORM STYLES */
 
 form{
   font-family: ($baseFont);
-  // display: flex;
-  // flex-direction: column;
-  // text-align: center;
-  // max-width: 70%;
-  // justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 70%;
+    textarea{
+      width: 100%;
+    }
 }
 
 
 /* BODY STYLES */
 
 .errorHandling{
-  color: red;
+  color: ($error)
 }
 
 ul{
+  color: white;
   list-style: none;
-  background: white;
+  background: $baseColor;
+  width: 80%;
+  margin: 0 auto;
     li{
       font-family: ($baseFont);
         p.shortMessage{
           font-style: italic;
         }
     }
+}
+
+.savedInput{
+  text-decoration-line: underline;
+  font-style: italic;
 }
 
 .shortMessageSpan{
