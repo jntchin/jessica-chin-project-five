@@ -3,13 +3,13 @@ import React from 'react';
 
 export default class GrammarForm extends React.Component {
 
-    displayUserInput = () => {
-        if (this.props.chars_left <= 49975){
-          return this.props.userInput
-        } else {
-          return null
-        }
-      }
+    // displayUserInput = () => {
+    //     if (this.props.chars_left <= 49975){
+    //       return this.props.userInput
+    //     } else {
+    //       return 'try again'
+    //     }
+    //   }
     
     
     render(){
@@ -23,7 +23,7 @@ export default class GrammarForm extends React.Component {
                     ></textarea>
                     <button onClick={this.props.handleSubmit} type="submit">Check my grammar!</button>
                 </form>
-                <p>{this.displayUserInput()}</p>
+                {/* <p>{this.displayUserInput()}</p> */}
             </div>
         )
     }
