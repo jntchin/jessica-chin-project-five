@@ -6,11 +6,11 @@ export default class GrammarForm extends React.Component {
     render(){
         return(
             <form action="">
-                <input 
-                    type="text" 
+                <textarea
+                    rows="10"
                     onChange={this.props.handleChange}
-                    value={this.props.userInput}
-                />
+                    value={this.props.inputField}
+                ></textarea>
                 <button onClick={this.props.handleSubmit} type="submit">Check my grammar!</button>
             </form>
         )
