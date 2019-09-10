@@ -41,7 +41,7 @@ export default class RemovableDiv extends React.Component {
         else {
             return(
                 <div>
-                    <p>not working</p>
+                    <p>it's not working</p>
                 </div> 
             )
         } 
