@@ -31,7 +31,7 @@ class App extends Component {
   checkMyGrammar = () => {
     axios ({
       method: 'GET',
-      url: 'http://proxy.hackeryou.com',
+      url: 'https://proxy.hackeryou.com',
       dataResponse: 'JSON',
       paramsSerializer: function(params) {
         return Qs.stringify(params, {arrayFormat: 'brackets'})
