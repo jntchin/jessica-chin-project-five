@@ -53,7 +53,7 @@ class App extends Component {
       this.setState({
         edits: results.data.matches
       })
-      if (results.data.matches === []){
+      if ([results.data.matches].length===0){
         this.setState({
           perfectSentence: 'You wrote a perfect sentence',
         })
@@ -82,14 +82,9 @@ class App extends Component {
     })
     if (this.state.charsLeft <= 49975){
       this.checkMyGrammar();
-      this.setState({
-        userInput: event.target.value,
-      })
-    }
-    else {
-      this.setState({
-        userInput: 'Try a different sentence!',
-      })
+      // this.setState({
+      //   userInput: event.target.value,
+      // })
     }
   }
 
@@ -144,13 +139,13 @@ class App extends Component {
     
           {/* add error handling messages if necessary */}
           <p className="errorHandling">{this.characterCountMessage()}</p>
+          <p className="savedInput">{this.state.savedInput}</p>
 
           {/* map over the axios call results to find the error messages */}
           <ul>{this.state.edits.map((errorMessages, index) =>{
             return(
               <li key={index}>
-                <p className="savedInput">{this.state.savedInput}</p>
-                {/* <p className="shortMessage">{errorMessages.shortMessage}</p> */}
+                <p className="shortMessage">{errorMessages.shortMessage}</p>
                 <p className="message">{errorMessages.message}</p>
               </li>
               ) 
