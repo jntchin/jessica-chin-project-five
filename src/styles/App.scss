@@ -18,22 +18,22 @@ html{
 }
 
 div.App{
-  height: 100vh;
-  @include portrait-tablet{
-    height: 100vh;
-  }
-  @include landscape-phones{
-    height: 100vh;
-  }
-  @include small-phones{
-    height: 100vh;
-  }
+  position: relative;
 }
 
 .wrapper{
   padding-bottom: 5%;
+  min-height: 100vh;
+  // position: relative;
+  @include portrait-tablet{
+    min-height: 100vh;
+  }
   @include landscape-phones{
+    min-height: 100vh;
     padding-top: 5%;
+  }
+  @include small-phones{
+    min-height: 100vh;
   }
 }
 
@@ -41,6 +41,7 @@ body {
   background: lightgrey;
   text-align: center;
   font-size: 1rem;
+  font-family: $baseFont;
   @include landscape-phones{
     font-size: 0.9rem;
   }
@@ -106,6 +107,7 @@ button{
   background: $headerAccent;
   color: white;
   box-shadow: none;
+  font-family: $baseFont;
     .resetButton{
       margin-bottom: 30%;
     }
@@ -123,11 +125,15 @@ ul{
   list-style: none;
   background: $baseColor;
   width: 50%;
-  margin: 0 auto;
+  padding: 5%;
+  margin: 0 auto 5%;
+  text-align: center;
     li{
       font-family: ($baseFont);
+      margin: 0;
         p.shortMessage{
           font-style: italic;
+          margin: 0;
         }
     }
 }
@@ -145,18 +151,16 @@ footer{
   color: white;
   display: block;
   text-align: center;
-  position: fixed;
+  position: absolute;
   right: 0;
   left: 0;
   bottom: 0;
-  font-size: 0.5rem;
-  // padding: auto 0;
-  // margin-bottom: 0;
+  font-size: 0.8rem;
+  // margin-top: 5%;
   @include landscape-phones{
     font-size: 0.5rem;
   }
     p{
-      // margin-bottom: 0;
       display: inline-block;
     }
 }

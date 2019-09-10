@@ -24,6 +24,10 @@ export default class RemovableDiv extends React.Component {
                 <div className="errors"> 
                     {/* display the user's submitted sentence on the page */}
                     <p className="savedInput">{this.props.savedInput}</p>
+
+                    {/* display the user's misspelled or incorrectly used words */}
+                    <p className="wrongWord">{this.props.wrongWord.split(",")}</p>
+                   
                     {/* map over the array resulting from the axios call in order to find the error messages */}
                     <ul>{this.props.edits.map((errorMessages, index) =>{
                         return(
