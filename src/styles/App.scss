@@ -2,15 +2,6 @@
 @import 'variables';
 @import 'mixins';
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /*GENERAL STYLES*/
 
 html{
@@ -26,7 +17,7 @@ div.App{
   min-height: 100vh;
   // position: relative;
   @include portrait-tablet{
-    min-height: 100vh;
+    height: 100vh;
   }
   @include landscape-phones{
     min-height: 100vh;
@@ -113,14 +104,23 @@ button{
     }
 }
 
+button:disabled{
+  background: $disabledColor;
+  color: white;
+}
+
 
 /* BODY STYLES */
 
 .errorHandling{
-  color: ($error)
+  color: ($error);
+  font-size: 1.5rem;
+  @include landscape-phones{
+    font-size: 1rem;
+  }
 }
 
-ul{
+ol.errorMessages{
   color: white;
   list-style: none;
   background: $baseColor;
@@ -152,8 +152,6 @@ footer{
   display: block;
   text-align: center;
   position: absolute;
-  right: 0;
-  left: 0;
   bottom: 0;
   font-size: 0.8rem;
   // margin-top: 5%;

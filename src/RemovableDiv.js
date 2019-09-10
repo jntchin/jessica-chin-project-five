@@ -26,10 +26,15 @@ export default class RemovableDiv extends React.Component {
                     <p className="savedInput">{this.props.savedInput}</p>
 
                     {/* display the user's misspelled or incorrectly used words */}
-                    <p className="wrongWord">{this.props.wrongWord.split(",")}</p>
-                   
+                    <ol>
+                        {this.props.wrongWord.map((word, index) =>{
+                            return(
+                                <li key={index}>{word}</li>
+                            )
+                        })}
+                    </ol>
                     {/* map over the array resulting from the axios call in order to find the error messages */}
-                    <ul>{this.props.edits.map((errorMessages, index) =>{
+                    <ol className="errorMessages">{this.props.edits.map((errorMessages, index) =>{
                         return(
                         <li key={index}>
                             {/* display the error message(s) on the page */}
@@ -37,7 +42,7 @@ export default class RemovableDiv extends React.Component {
                         </li>
                         ) 
                         })}
-                    </ul>  
+                    </ol>  
                 </div>
             )
             // if the resulting array has a length of less than 0, meaning it doesn't return any messages, print a message to the user

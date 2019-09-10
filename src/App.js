@@ -54,7 +54,8 @@ class App extends Component {
           return this.state.userInput.slice(misspelling.context.offset, misspelling.context.offset + misspelling.context.length)
         })
       })
-    }) 
+      console.log(this.state.wrongWord);
+    })  
   }
 
 
@@ -90,6 +91,7 @@ class App extends Component {
       userInput: '',
       edits: [],
       savedInput: '',
+      wrongWords: '',
     })
   }
   
