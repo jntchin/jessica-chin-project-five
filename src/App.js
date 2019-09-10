@@ -4,6 +4,7 @@ import axios from 'axios';
 import Qs from 'qs';
 import GrammarForm from './GrammarForm';
 import ResetButton from './ResetButton';
+import RemovableDiv from './RemovableDiv'
 // import firebase from './firebase';
 
 
@@ -51,11 +52,12 @@ class App extends Component {
       }
     }).then((results) => {
       this.setState({
-        edits: results.data.matches
+        edits: results.data.matches,
       })
-      if ([results.data.matches].length===0){
+      if (results.data.matches.length < 0){
         this.setState({
-          perfectSentence: 'You wrote a perfect sentence',
+          perfectSentence: true,
+          userInput: '',
         })
       } 
     }) 
@@ -89,6 +91,7 @@ class App extends Component {
   }
 
   
+  
 
   //functions for the "hide my shame" button
   reset(){
@@ -96,6 +99,7 @@ class App extends Component {
       inputField: '',
       userInput: '',
       edits: [],
+      savedInput: '',
     })
   }
   
@@ -104,6 +108,13 @@ class App extends Component {
     this.reset();
   }
 
+  
+
+  // onButtonClick = () => {
+  //   // this.handleSubmit();
+  //   this.handleReset();
+  // }
+
   characterCountMessage = () => {
       //if the number of characters left is 50,000 return go ahead and write something, don't print userInput
     if (this.state.charsLeft === 50000) {
@@ -111,7 +122,7 @@ class App extends Component {
     //if the number of characters left is 49,975-49,999 print must be at least 25 characters
     } else if (this.state.charsLeft <= 49999 && this.state.charsLeft > 49975){
       return 'Must be at least 25 characters'
-      //if the number of characters left is 49,974 or less, print the userInput
+      //if the number of characters left is 49,974 or less, don't print an error message
     } else if (this.state.charsLeft <= 49975){
       return null 
       //if the number of characters left is 0, write limit of 50,000 characters, don't render userInput
@@ -122,7 +133,6 @@ class App extends Component {
 
  
   render(){
-    // const perfectSentence = 'You wrote a perfect sentence! Good job!'
     return (
       <div className="App">
         <header>
@@ -131,30 +141,13 @@ class App extends Component {
           <p>Type a sentence below.</p>
         </header>
         
-        {/* run the axios call in the form component */}
-        <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} inputField={this.state.inputField} charsLeft={this.state.charsLeft} userInput={this.state.userInput} />
+        {/* run the axios call in the form component upon submit */}
+        <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} inputField={this.state.inputField} charsLeft={this.state.charsLeft} userInput={this.state.userInput} handleReset={this.onButtonClick}/>
 
-        <div className="errors"> 
-           {/* if the user writes a perfect sentence */}
-    
-          {/* add error handling messages if necessary */}
-          <p className="errorHandling">{this.characterCountMessage()}</p>
-          <p className="savedInput">{this.state.savedInput}</p>
-
-          {/* map over the axios call results to find the error messages */}
-          <ul>{this.state.edits.map((errorMessages, index) =>{
-            return(
-              <li key={index}>
-                <p className="shortMessage">{errorMessages.shortMessage}</p>
-                <p className="message">{errorMessages.message}</p>
-              </li>
-              ) 
-            })}
-          </ul>
-          
-        </div>
+        {/* render the information to the page */}
+        <RemovableDiv perfectSentence={this.state.perfectSentence} savedInput={this.state.savedInput} edits={this.state.edits} characterCountMessage={this.characterCountMessage} />
         
-        {/* reset the form */}
+        {/* reset the form when button is clicked */}
         <ResetButton handleReset={this.handleReset} />
 
       </div>
