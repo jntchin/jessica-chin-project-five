@@ -27,9 +27,10 @@ export default class RemovableDiv extends React.Component {
 
                     {/* display the user's misspelled or incorrectly used words */}
                     <ol>
+                        <p>Take a look at this:</p>
                         {this.props.wrongWord.map((word, index) =>{
                             return(
-                                <li key={index}>{word}</li>
+                                <li key={index} className="wrongWordListItem">{word}</li>
                             )
                         })}
                     </ol>
