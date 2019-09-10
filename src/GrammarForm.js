@@ -3,10 +3,10 @@ import React from 'react';
 export default class GrammarForm extends React.Component {
     render(){
         return(
-            <div>
+            <div className="form">
                 <form action="">
                     <textarea
-                        rows="5"
+                        rows="4"
                         onChange={this.props.handleChange}
                         value={this.props.inputField}
                     >

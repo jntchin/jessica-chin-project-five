@@ -23,7 +23,7 @@ class App extends Component {
       savedInput: '',
       edits: [],
       charsLeft: 50000,
-      perfectSentence: '',
+      newEditState: '',
     }
   }
 
@@ -49,19 +49,13 @@ class App extends Component {
           'header_params': 'value',
         },
         xmlToJSON: false,
-      }
+      } 
     }).then((results) => {
       this.setState({
         edits: results.data.matches,
+        newEditState: this.state.edits,
       })
-      if (results.data.matches.length < 0){
-        this.setState({
-          perfectSentence: true,
-          userInput: '',
-        })
-      } 
     }) 
-    console.log(this.state);
   }
 
   //when the user types in the form
@@ -84,9 +78,6 @@ class App extends Component {
     })
     if (this.state.charsLeft <= 49975){
       this.checkMyGrammar();
-      // this.setState({
-      //   userInput: event.target.value,
-      // })
     }
   }
 
@@ -94,6 +85,7 @@ class App extends Component {
   
 
   //functions for the "hide my shame" button
+
   reset(){
     this.setState({
       inputField: '',
@@ -115,41 +107,29 @@ class App extends Component {
   //   this.handleReset();
   // }
 
-  characterCountMessage = () => {
-      //if the number of characters left is 50,000 return go ahead and write something, don't print userInput
-    if (this.state.charsLeft === 50000) {
-      return 'Go ahead and write something!'
-    //if the number of characters left is 49,975-49,999 print must be at least 25 characters
-    } else if (this.state.charsLeft <= 49999 && this.state.charsLeft > 49975){
-      return 'Must be at least 25 characters'
-      //if the number of characters left is 49,974 or less, don't print an error message
-    } else if (this.state.charsLeft <= 49975){
-      return null 
-      //if the number of characters left is 0, write limit of 50,000 characters, don't render userInput
-    } else if (this.state.charsLeft === 0){
-      return (`You've hit the character limit!`)
-    }
-  }
-
- 
+  
   render(){
     return (
       <div className="App">
-        <header>
-          <h1>Grammarist</h1>
-          <h2>Let me tell you what <span>you're</span> your problem is!</h2>
-          <p>Type a sentence below.</p>
-        </header>
-        
-        {/* run the axios call in the form component upon submit */}
-        <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} inputField={this.state.inputField} charsLeft={this.state.charsLeft} userInput={this.state.userInput} handleReset={this.onButtonClick}/>
-
-        {/* render the information to the page */}
-        <RemovableDiv perfectSentence={this.state.perfectSentence} savedInput={this.state.savedInput} edits={this.state.edits} characterCountMessage={this.characterCountMessage} />
-        
-        {/* reset the form when button is clicked */}
-        <ResetButton handleReset={this.handleReset} />
-
+          <div class="wrapper">
+            <header>
+              <h1>Grammarist</h1>
+              <h2>Let me tell you what <span>you're</span> your problem is!</h2>
+              <p>Type a sentence below.</p>
+            </header>
+            
+            {/* run the axios call in the form component upon submit */}
+            <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} inputField={this.state.inputField} charsLeft={this.state.charsLeft} userInput={this.state.userInput} handleReset={this.onButtonClick}/>
+    
+            {/* render the information to the page */}
+            <RemovableDiv savedInput={this.state.savedInput} edits={this.state.edits} newEditState={this.state.newEditState} charsLeft={this.state.charsLeft} />
+            
+            {/* reset the form when button is clicked */}
+            <ResetButton handleReset={this.handleReset} />
+          </div>
+          <footer>
+            <p>&copy; 2019 Jessica Chin. Grammar by GrammarBot.</p>
+          </footer>
       </div>
     );
   }

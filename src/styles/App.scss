@@ -1,31 +1,6 @@
 @import 'setup';
 @import 'variables';
-
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
+@import 'mixins';
 
 @keyframes App-logo-spin {
   from {
@@ -38,16 +13,37 @@
 
 /*GENERAL STYLES*/
 
-// *{
-//   border: 2px solid rebeccapurple;
-// }
-
 html{
   font-size: 125%;
 }
 
-body{
+div.App{
+  height: 100vh;
+  @include portrait-tablet{
+    height: 100vh;
+  }
+  @include landscape-phones{
+    height: 100vh;
+  }
+  @include small-phones{
+    height: 100vh;
+  }
+}
+
+.wrapper{
+  padding-bottom: 5%;
+  @include landscape-phones{
+    padding-top: 5%;
+  }
+}
+
+body {
   background: lightgrey;
+  text-align: center;
+  font-size: 1rem;
+  @include landscape-phones{
+    font-size: 0.9rem;
+  }
 }
 
 /*HEADER STYLES*/
@@ -59,29 +55,59 @@ header{
     font-size: 3rem;
     font-weight: 700;
     color: ($headerAccent);
+    text-shadow: 2px 2px white;
+      @include portrait-tablet{
+        font-size: 2.5rem;
+      }
+      @include landscape-phones{
+        font-size: 2rem;
+      }
   }
   
   h2{
     font-family: ($headerFont);
     color: ($text);
+    font-size: 2rem;
+      @include portrait-tablet{
+      font-size: 1.5rem; 
+      }
+      @include landscape-phones{
+        font-size: 1.1rem;
+      }
       span{
         text-decoration-line: line-through;
         color:($error);
       }
   }
+  
 }
 
 /* FORM STYLES */
 
-form{
-  font-family: ($baseFont);
-  width: 70%;
-  margin: 0 auto;
-  text-align: center;
-  max-width: 70%;
-    textarea{
-      width: 100%;
-      border: 1px solid black;
+div.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+    form{
+      font-family: ($baseFont);
+      width: 70%;
+      margin: 0 auto;
+      text-align: center;
+      max-width: 70%;
+        textarea{
+          width: 100%;
+          border: 1px solid black;
+        }
+    }
+}
+
+button{
+  background: $headerAccent;
+  color: white;
+  box-shadow: none;
+    .resetButton{
+      margin-bottom: 30%;
     }
 }
 
@@ -96,7 +122,7 @@ ul{
   color: white;
   list-style: none;
   background: $baseColor;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
     li{
       font-family: ($baseFont);
@@ -107,10 +133,34 @@ ul{
 }
 
 .savedInput{
-  text-decoration-line: underline;
   font-style: italic;
 }
 
-.shortMessageSpan{
-  text-transform: lowercase;
+
+//FOOTER STYLES
+
+footer{
+  width: 100%;
+  background: $baseColor;
+  color: white;
+  display: block;
+  text-align: center;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  font-size: 0.5rem;
+  // padding: auto 0;
+  // margin-bottom: 0;
+  @include landscape-phones{
+    font-size: 0.5rem;
+  }
+    p{
+      // margin-bottom: 0;
+      display: inline-block;
+    }
 }
+
+
+
+
