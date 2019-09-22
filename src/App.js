@@ -75,7 +75,12 @@ class App extends Component {
       inputField: event.target.value,
       userInput: event.target.value,
       charsLeft: charLeft,
-    })
+    }) 
+    if (this.state.inputField != ''){
+      this.setState({
+        newEditState: '',
+      })
+    }
   }
 
 //when the user clicks the submit button
