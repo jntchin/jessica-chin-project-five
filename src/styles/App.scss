@@ -15,7 +15,6 @@ div.App{
 .wrapper{
   padding-bottom: 5%;
   min-height: 100vh;
-  // position: relative;
   @include portrait-tablet{
     height: 100vh;
   }
@@ -29,7 +28,7 @@ div.App{
 }
 
 body {
-  background: lightgrey;
+  background-color: #d4d2d8;
   text-align: center;
   font-size: 1rem;
   font-family: $baseFont;
@@ -46,7 +45,7 @@ header{
     font-family: ($headerFont);
     font-size: 3rem;
     font-weight: 700;
-    color: ($headerAccent);
+    color: #000000;
     text-shadow: 2px 2px white;
       @include portrait-tablet{
         font-size: 2.5rem;
@@ -74,6 +73,14 @@ header{
   
 }
 
+.perfectSentence{
+  background: black;
+  color: white;
+    p{
+      width: 100%;
+    }
+}
+
 /* FORM STYLES */
 
 div.form{
@@ -88,6 +95,7 @@ div.form{
       text-align: center;
       max-width: 70%;
         textarea{
+          resize: none;
           width: 100%;
           border: 1px solid black;
         }
@@ -95,7 +103,7 @@ div.form{
 }
 
 button{
-  background: $headerAccent;
+  background: black;
   color: white;
   box-shadow: none;
   font-family: $baseFont;
@@ -105,7 +113,7 @@ button{
 }
 
 button:disabled{
-  background: $disabledColor;
+  background: darkslategray;
   color: white;
 }
 
@@ -153,8 +161,8 @@ ol.errorMessages{
 
 footer{
   width: 100%;
-  background: $baseColor;
-  color: white;
+  // background: $baseColor;
+  color: $baseColor;
   display: block;
   text-align: center;
   position: absolute;
