@@ -55,7 +55,7 @@ class App extends Component {
     }).then(() => {
         if (this.state.edits.length <= 0) {
           this.setState({
-            newEditState: `Your sentence didn't contain any errors`,
+            newEditState: `Your sentence didn't contain any errors. Great job!`,
           })
         } else if (this.state.edits.length > 0){
           this.setState({

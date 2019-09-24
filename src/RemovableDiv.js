@@ -23,10 +23,12 @@ export default class RemovableDiv extends React.Component {
             return(
                 <div className="errors"> 
                     {/* display the user's submitted sentence on the page */}
-                    <p className="savedInput">{this.props.savedInput}</p>
+                    <div className="userInput">
+                        <p className="savedInput">{this.props.savedInput}</p>
+                    </div>
 
                     {/* display the user's misspelled or incorrectly used words */}
-                    <p>Error(s) found:</p>
+                    <p className="errorMessage">Error(s) found:</p>
                     <ol>
                         {this.props.wrongWord.map((word, index) =>{
                             return(
@@ -35,7 +37,7 @@ export default class RemovableDiv extends React.Component {
                         })}
                     </ol>
                     {/* map over the array resulting from the axios call in order to find the error messages */}
-                    <ol className="errorMessages">{this.props.edits.map((errorMessages, index) =>{
+                    <ul className="errorMessages">{this.props.edits.map((errorMessages, index) =>{
                         return(
                             <li key={index}>
                                 {/* display the error message(s) on the page */}
@@ -43,7 +45,7 @@ export default class RemovableDiv extends React.Component {
                             </li>
                         ) 
                         })}
-                    </ol>  
+                    </ul>  
                 </div>
             )
             // if the resulting array has a length of less than 0, meaning it doesn't return any messages, print a message to the user
