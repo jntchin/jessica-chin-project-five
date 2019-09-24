@@ -45,9 +45,9 @@ header{
     font-family: ($headerFont);
     font-size: 6rem;
     font-weight: 700;
-    // color: white;
     color: #4df5d9fb;
-    // text-shadow: 2px 2px white;
+    text-shadow: 2px 2px $typePrompt;
+    margin: 2% auto;
       @include portrait-tablet{
         font-size: 2.5rem;
       }
@@ -55,11 +55,11 @@ header{
         font-size: 2rem;
       }
   }
-  
+
   h2{
-    font-family: ($baseFont);
+    font-family: ($headerFont);
     color: ($text);
-    font-size: 2rem;
+    font-size: 1.8rem;
       @include portrait-tablet{
       font-size: 1.5rem; 
       }
@@ -74,13 +74,22 @@ header{
   
 }
 
+header p{
+  color: $typePrompt;
+}
+
 .perfectSentence{
   background: black;
   color: white;
-  width: 25%;
+  width: 40%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
     p{
       width: 100%;
       font-family: $baseFont;
+      font-style: italic;
+      margin: 2%;
     }
 }
 
@@ -101,6 +110,7 @@ div.form{
           resize: none;
           width: 100%;
           border: 1px solid black;
+          padding: 1%;
         }
     }
 }
@@ -110,16 +120,28 @@ button{
   color: white;
   box-shadow: none;
   border: none;
+  border-radius: 10px;
   font-family: $baseFont;
+  padding: 1%;
     .resetButton{
-      margin-bottom: 30%;
+      margin-top: 10%;
     }
+}
+
+button:focus{
+  border: 1.5px solid yellow;
+}
+
+button:hover{
+  background: yellow;
+  color: black;
 }
 
 button:disabled{
   background: darkslategray;
   color: white;
   border: none;
+  text-decoration: line-through;
 }
 
 
@@ -155,8 +177,6 @@ ol.errorMessages{
     }
 }
 
-
-
 .savedInput{
   font-style: italic;
 }
@@ -176,6 +196,8 @@ footer{
   }
     p{
       display: inline-block;
+      padding: 0;
+      color: white;
     }
 }
 
