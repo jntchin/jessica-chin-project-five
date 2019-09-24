@@ -53,9 +53,13 @@ class App extends Component {
         })
       })
     }).then(() => {
-        if (this.state.edits.length >= 0) {
+        if (this.state.edits.length <= 0) {
           this.setState({
             newEditState: `Your sentence didn't contain any errors`,
+          })
+        } else if (this.state.edits.length > 0){
+          this.setState({
+            newEditState: '',
           })
         }
     }).then(() =>{
@@ -134,8 +138,6 @@ class App extends Component {
               
               {/* run the axios call in the form component upon submit */}
               <GrammarForm run={this.checkMyGrammar} handleChange = {this.handleChange} handleSubmit={this.handleSubmit} inputField={this.state.inputField} charsLeft={this.state.charsLeft} userInput={this.state.userInput} handleReset={this.onButtonClick}/>
-      
-              
   
               {/* reset the form when button is clicked */}
               <ResetButton handleReset={this.handleReset} />
