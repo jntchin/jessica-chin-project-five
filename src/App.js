@@ -63,7 +63,7 @@ class App extends Component {
           })
         }
     }).then(() =>{
-       if(this.state.inputField != '')
+       if(this.state.inputField !== '')
        this.setState({
          newEditState: '',
        })
@@ -80,7 +80,7 @@ class App extends Component {
       userInput: event.target.value,
       charsLeft: charLeft,
     }) 
-    if (this.state.inputField != ''){
+    if (this.state.inputField !== ''){
       this.setState({
         newEditState: '',
       })
@@ -127,7 +127,7 @@ class App extends Component {
               <h1>Grammarist</h1>
               <h2>Let me tell you what <span>you're</span> your problem is!</h2>
               <p>Type a sentence below.</p>
-              <div class="perfectSentence">
+              <div className="perfectSentence">
                 <p>{this.state.newEditState}</p>
               </div>
             </header>
