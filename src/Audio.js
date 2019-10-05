@@ -16,7 +16,6 @@ export default class Audio extends React.Component {
         this.setState({
             playClicked : true,
         })
-        console.log('clicked play');
 
     }
 
@@ -24,10 +23,7 @@ export default class Audio extends React.Component {
         if (this.state.playClicked === true){
             return(
                 <div className="audioButton">
-                    <audio autoPlay controls>
-                        <source src="https://s3.amazonaws.com/mobile.engineering.com/audio/19559.mp3" type="audio/mp3" />
-                        Your browser does not support the audio tag.
-                    </audio> 
+                    <audio autoPlay controls src="https://s3.amazonaws.com/mobile.engineering.com/audio/19559.mp3" type="audio/mp3" />
                 </div> 
             )
         } else {

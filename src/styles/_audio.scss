@@ -1,0 +1,57 @@
+@import 'setup';
+@import 'variables';
+@import 'mixins';
+
+//AUDIO STYLES
+
+.audioButton{
+    border-radius: 5px;
+    position: fixed;
+    right: 5px;
+    bottom: 10px;
+    color: purple;
+    button{
+      color: #435058;
+    }
+  }
+  
+  audio{
+     @include landscape-phones{
+      max-width: 250px;
+      width: 250px;
+    }
+  }
+  
+  // when I change the size of the screen, the volume slider disappears, but I can't get it to be hidden upon load
+  
+  .audioButton audio::-webkit-media-controls-volume-slider {
+      display: none;
+  }
+  
+  .audioButton audio::-webkit-media-controls-panel {
+    background: red;
+    color: red;
+    border-radius: 0;
+  }
+  
+  
+  .initialButton{
+    position: fixed;
+    right: 5px;
+    bottom: 10px;
+    button{
+      background: lightgrey;
+      color: black;
+      border-radius: 50px;
+      border: none;
+      padding: 6px;
+      display: inline;
+    }
+    p{
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      display: inline;
+    }
+  }
+  
+  
