@@ -3,6 +3,7 @@ import './styles/App.scss';
 import axios from 'axios';
 import Qs from 'qs';
 import GrammarForm from './GrammarForm';
+import Audio from './Audio';
 import ResetButton from './ResetButton';
 import RemovableDiv from './RemovableDiv'
 
@@ -142,6 +143,9 @@ class App extends Component {
               {/* reset the form when button is clicked */}
               <ResetButton handleReset={this.handleReset} />
             </main>
+            <section>
+              <Audio />
+            </section>
           </div>
           <footer>
             <p>&copy; 2019 Jessica Chin. Grammar by GrammarBot.</p>

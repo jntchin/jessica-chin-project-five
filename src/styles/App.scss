@@ -203,6 +203,42 @@ ul.errorMessages{
     }
 }
 
+//AUDIO STYLES
+
+.audioButton{
+  border-radius: 5px;
+  position: fixed;
+  right: 5px;
+  bottom: 10px;
+  .controlBar{
+    background: lightgrey;
+    color: black;
+  }
+  @include landscape-phones{
+    max-width: 250px;
+    width: 250px;
+  }
+}
+
+
+.initialButton{
+  position: fixed;
+  right: 5px;
+  bottom: 10px;
+  button{
+    background: lightgrey;
+    color: black;
+    border-radius: 50px;
+    border: none;
+    padding: 6px;
+    display: inline;
+  }
+  p{
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    display: inline;
+  }
+}
 
 
 //FOOTER STYLES
